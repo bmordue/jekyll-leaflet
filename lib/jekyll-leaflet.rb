@@ -1,6 +1,5 @@
 require "jekyll"
-require "uri"
-#require "net/http"
+require "net/http"
 
 
 class LeafletEmbed < Liquid::Block

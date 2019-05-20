@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'jekyll-leaflet'
-  s.version     = '0.0.1'
+  s.version     = '0.0.2'
   s.date        = '2019-05-11'
   s.summary     = "Embed Leaflet.js maps in Jekyll pages"
   s.description = "Embed Leaflet.js maps in Jekyll pages"

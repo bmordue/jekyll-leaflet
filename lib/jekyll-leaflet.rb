@@ -1,5 +1,7 @@
 require "jekyll"
+require "uri"
 require "net/http"
+require "securerandom"
 
 
 class LeafletEmbed < Liquid::Block
@@ -11,9 +13,10 @@ class LeafletEmbed < Liquid::Block
 
   def render(context)
 #    query = URI::encode_www_form(["data", super]) # super gets tag block contents
-    uri = "https://overpass-api.de/api/interpreter"
-    response = Net::HTTP.post_form(uri, 'data' => super)
-    @geojson_file = "#{SecureRandom.uuid}.geojson"
+    uri = URI("https://overpass-api.de/api/interpreter")
+    data = super
+    response = Net::HTTP.post_form uri, {'data' => data}
+    geojson_file = "#{SecureRandom.uuid}.geojson"
     File.write(geojson_file, response.body);
 
     tmpl_path = File.join Dir.pwd, "_includes", "leaflet.html"

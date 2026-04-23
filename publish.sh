@@ -5,8 +5,8 @@ GEMSPEC=jekyll-leaflet.gemspec
 git commit -am "changes for version $NEXT_VERSION"
 sed -i~ "s/$PREVIOUS_VERSION/$NEXT_VERSION/g" $GEMSPEC
 git add $GEMSPEC && git commit -m "version $NEXT_VERSION"
-sudo docker run --rm -v $(pwd):/wrk -w /wrk ruby:2.6 gem build $GEMSPEC
+sudo docker run --rm -v $(pwd):/wrk -w /wrk ruby:3.2 gem build $GEMSPEC
 sudo chown ben:ben jekyll-leaflet-$NEXT_VERSION.gem
 git tag "v$NEXT_VERSION"
-sudo docker run --rm -v $(pwd):/wrk -w /wrk -v $HOME/.gem/credentials:/.gem/credentials ruby:2.6 gem push jekyll-leaflet-$NEXT_VERSION.gem --config-file /.gem/credentials
+sudo docker run --rm -v $(pwd):/wrk -w /wrk -v $HOME/.gem/credentials:/.gem/credentials ruby:3.2 gem push jekyll-leaflet-$NEXT_VERSION.gem --config-file /.gem/credentials
 rm $GEMSPEC~
